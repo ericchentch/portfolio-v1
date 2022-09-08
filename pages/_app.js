@@ -1,19 +1,20 @@
-import React, { useEffect, useState } from 'react';
-import PropTypes from 'prop-types';
+import {
+  CssBaseline,
+  MuiThemeProvider,
+  useMediaQuery,
+} from '@material-ui/core';
 import Head from 'next/head';
-import { MuiThemeProvider, useMediaQuery, CssBaseline } from '@material-ui/core';
+import PropTypes from 'prop-types';
+import React, { useEffect, useState } from 'react';
 import { darkTheme, lightTheme } from '../src/theme';
 
 export default function MyApp({ Component, pageProps }) {
-
-  const prefersDarkMode = useMediaQuery('(prefers-color-scheme: dark)')
-  const [theme, setTheme] = useState(
-    prefersDarkMode ? darkTheme : lightTheme
-  )
+  const prefersDarkMode = useMediaQuery('(prefers-color-scheme: dark)');
+  const [theme, setTheme] = useState(prefersDarkMode ? darkTheme : lightTheme);
 
   useEffect(() => {
-    setTheme(prefersDarkMode ? darkTheme : lightTheme)
-  }, [prefersDarkMode])
+    setTheme(prefersDarkMode ? darkTheme : lightTheme);
+  }, [prefersDarkMode]);
 
   useEffect(() => {
     // Remove the server-side injected CSS.
@@ -26,12 +27,15 @@ export default function MyApp({ Component, pageProps }) {
   return (
     <React.Fragment>
       <Head>
-        <title>Kaustubh Odak</title>
-        <meta name="viewport" content="minimum-scale=1, initial-scale=1, width=device-width" />
+        <title>Eric Chen</title>
+        <meta
+          name='viewport'
+          content='minimum-scale=1, initial-scale=1, width=device-width'
+        />
       </Head>
       <MuiThemeProvider theme={theme}>
         <CssBaseline />
-        <Component {...pageProps} setTheme={setTheme}/>
+        <Component {...pageProps} setTheme={setTheme} />
       </MuiThemeProvider>
     </React.Fragment>
   );
